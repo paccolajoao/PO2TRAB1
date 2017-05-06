@@ -1,0 +1,10 @@
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\bin\Debug\TRAB1-PO2.exe.config
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\bin\Debug\TRAB1-PO2.exe
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\bin\Debug\TRAB1-PO2.pdb
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\obj\Debug\TRAB1-PO2.csprojResolveAssemblyReference.cache
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\obj\Debug\TRAB1_PO2.Form1.resources
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\obj\Debug\TRAB1_PO2.Properties.Resources.resources
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\obj\Debug\TRAB1-PO2.csproj.GenerateResource.Cache
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\obj\Debug\TRAB1-PO2.exe
+c:\users\paccola\documents\visual studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\obj\Debug\TRAB1-PO2.pdb
+C:\Users\paccola\Documents\Visual Studio 2017\Projects\TRAB1-PO2\TRAB1-PO2\bin\Debug\info.lundin.math.dll
