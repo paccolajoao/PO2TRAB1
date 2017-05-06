@@ -117,13 +117,16 @@ namespace TRAB1_PO2
               k++;
             }
 
+    /*
             MessageBox.Show(a.ToString());
             MessageBox.Show(b.ToString());
             MessageBox.Show(u.ToString());
             MessageBox.Show(y.ToString());
             MessageBox.Show(fu.ToString());
             MessageBox.Show(fy.ToString());
+            */
 
+             
         }
 
 
