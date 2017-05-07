@@ -37,6 +37,10 @@ namespace TRAB1_PO2
 
             if (radioButton1.Checked)
                 MetodoFibonacci();
+            else if (radioButton4.Checked)
+                Bissessao();
+
+
         }
 
         public Form1()
@@ -136,6 +140,99 @@ namespace TRAB1_PO2
             parser.Values["x"].SetValue(div);
             div = parser.Parse(func);
             textBox6.Text = div.ToString();
+
+        }
+
+        // Calcula derivada de x
+        public double Derivada (double x)
+        {
+            double d = 0;
+            double h = 1000 * epsilon;
+            bool achou = false;
+            double p = 0, q;
+            int it = 0;
+            double erro = 1000000;
+            int maxIt = 100;
+   
+
+            ExpressionParser parser = new ExpressionParser(); //Interpretador
+            if (func.Contains("e"))
+            {
+                parser.Values.Add("e", Math.E);
+            }
+
+            parser.Values.Add("x", x + h);
+            double fMaisH = parser.Parse(func);
+            parser.Values["x"].SetValue(x - h);
+            double fMenosH = parser.Parse(func);
+
+
+            p = (fMaisH - fMenosH) / (2 * h);
+
+            for(it = 0; it < maxIt && !achou; it++)
+            {
+                q = p;
+                h = h / 2;
+                parser.Values["x"].SetValue(x + h);
+                fMaisH = parser.Parse(func);
+                parser.Values["x"].SetValue(x - h);
+                fMenosH = parser.Parse(func);
+
+                if (Math.Abs(p - q) < erro)
+                    erro = Math.Abs(p - q);
+                else
+                {
+                    d = q;
+                    achou = true;
+                }
+            }
+            return d;
+        }
+
+        public void Bissessao ()
+        {
+            int n = 0, i;
+            double xk = 0.5, derivadaxk, xfinal = epsilon / (b - a), log;
+            bool found = false;
+
+            ExpressionParser parser = new ExpressionParser(); //Interpretador
+            if (func.Contains("e"))
+            {
+                parser.Values.Add("e", Math.E);
+            }
+
+            log = Math.Log(xfinal)/Math.Log(xk);
+
+            for (; log > n; n++) ;
+
+            xk = (a + b) / 2;
+            derivadaxk = Derivada(xk);
+
+            for (i=1; (i<=n) && (derivadaxk != 0);i++)
+            {
+                if (derivadaxk == 0)
+                {
+                    xfinal = xk;
+                    found = true;
+                } 
+                else if (derivadaxk > 0)
+                    b = xk;
+                else if (derivadaxk < 0)
+                    a = xk;
+
+                xk = (a + b) / 2;
+                derivadaxk = Derivada(xk);
+
+            }
+
+            if (!found) xfinal = (a + b) / 2;
+
+            parser.Values.Add("x", xfinal);
+
+            log = parser.Parse(func); // qualquer variavel, apenas para armazenar o valor da fx final
+
+            textBox5.Text = xfinal.ToString();
+            textBox6.Text = log.ToString();
 
         }
 
