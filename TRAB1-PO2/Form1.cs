@@ -23,6 +23,18 @@ namespace TRAB1_PO2
             b = Convert.ToDouble(textBox3.Text);
             epsilon = Convert.ToDouble(textBox2.Text);
 
+            if ( a > b)
+            {
+                MessageBox.Show("O valor de a não pode ser maior que o de b!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if ( epsilon < 0)
+            {
+                MessageBox.Show("O valor de epsilon não pode ser negativo!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (radioButton1.Checked)
                 MetodoFibonacci();
         }
@@ -117,16 +129,14 @@ namespace TRAB1_PO2
               k++;
             }
 
-    /*
-            MessageBox.Show(a.ToString());
-            MessageBox.Show(b.ToString());
-            MessageBox.Show(u.ToString());
-            MessageBox.Show(y.ToString());
-            MessageBox.Show(fu.ToString());
-            MessageBox.Show(fy.ToString());
-            */
 
-             
+            div = (a + b) / 2;
+
+            textBox5.Text = div.ToString();
+            parser.Values["x"].SetValue(div);
+            div = parser.Parse(func);
+            textBox6.Text = div.ToString();
+
         }
 
 
