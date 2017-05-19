@@ -39,7 +39,8 @@ namespace TRAB1_PO2
                 MetodoFibonacci();
             else if (radioButton4.Checked)
                 Bissessao();
-
+            else if (radioButton5.Checked)
+                Newton();
 
         }
 
@@ -189,6 +190,55 @@ namespace TRAB1_PO2
             return d;
         }
 
+        public double DerivadaSegunda(double x)
+        {
+
+            double d = 0;
+            double h = 1000 * epsilon;
+            bool achou = false;
+            double p = 0, q;
+            int it = 0;
+            double erro = 1000000;
+            int maxIt = 100;
+
+            ExpressionParser parser = new ExpressionParser(); //Interpretador
+            if (func.Contains("e"))
+            {
+                parser.Values.Add("e", Math.E);
+            }
+
+            parser.Values.Add("x", x + (2*h) );
+            double fMaisH = parser.Parse(func);
+            parser.Values["x"].SetValue(x - (2*h));
+            double fMenosH = parser.Parse(func);
+            parser.Values["x"].SetValue(x);
+            double fMeio = 2 * (parser.Parse(func));
+
+            p = ( fMaisH - fMeio + fMenosH ) / (4 * (h*h) );
+
+            for (it = 0; it < maxIt && !achou; it++)
+            {
+                q = p;
+                h = h / 2;
+                parser.Values["x"].SetValue(x + (2 * h));
+                fMaisH = parser.Parse(func);
+                parser.Values["x"].SetValue(x - (2 * h));
+                fMenosH = parser.Parse(func);
+                parser.Values["x"].SetValue(x);
+                fMeio = 2 * (parser.Parse(func));
+
+                if (Math.Abs(p - q) < erro)
+                    erro = Math.Abs(p - q);
+                else
+                {
+                    d = q;
+                    achou = true;
+                }
+            }
+            return d;
+
+        }
+
         public void Bissessao ()
         {
             int n = 0, i;
@@ -233,6 +283,49 @@ namespace TRAB1_PO2
 
             textBox5.Text = xfinal.ToString();
             textBox6.Text = log.ToString();
+
+        }
+
+        public void Newton ()
+        {
+            double x = a, fxx, fxfinal;
+
+            ExpressionParser parser = new ExpressionParser(); //Interpretador
+            if (func.Contains("e"))
+            {
+                parser.Values.Add("e", Math.E);
+            }
+
+            fxfinal = Derivada(x);
+            fxx = DerivadaSegunda(x);
+
+            if (fxx == 0)
+                MessageBox.Show("Valor da segunda derivada resultou em zero.");
+
+            x = x - (fxfinal / fxx);
+            fxfinal = Derivada(x);
+
+            while ( Math.Abs(fxfinal) > epsilon)
+            {
+                fxx = DerivadaSegunda(x);
+
+                if (fxx == 0)
+                    MessageBox.Show("Valor da segunda derivada resultou em zero.");
+                
+              
+                x = x - (fxfinal / fxx);
+
+                fxfinal = Derivada(x);
+ 
+            }
+                
+            parser.Values.Add("x", x);
+
+            fxx = parser.Parse(func);
+
+            textBox5.Text = x.ToString();
+            textBox6.Text = fxx.ToString();
+
 
         }
 
